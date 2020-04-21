@@ -1,0 +1,38 @@
+<!--
+  ~ Copyright (c) 2020 Dimitrijs Fedotovs
+  ~ This code is licensed under MIT license
+  ~ (see LICENSE.txt for details)
+  -->
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<ui:composition template="/templates/main.xhtml">
+    <ui:define name="content">
+
+        <h:dataTable value="#{authorListBean.authors}" var="a">
+            <h:column>
+                <f:facet name="header">id</f:facet>
+                <h:outputLink value="author.xhtml">
+                    <f:param name="id" value="#{a.id}"/>
+                    #{a.id}
+                </h:outputLink>
+            </h:column>
+            <h:column>
+                <f:facet name="header">name</f:facet>
+                <h:outputLink value="author.xhtml">
+                    <f:param name="id" value="#{a.id}"/>
+                    #{a.name}
+                </h:outputLink>
+            </h:column>
+        </h:dataTable>
+
+
+        <h:outputLink value="author.xhtml">Create new</h:outputLink>
+    </ui:define>
+</ui:composition>
+
+</html>
