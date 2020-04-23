@@ -24,7 +24,6 @@ public class BookBean implements Serializable {
     private long selectedAuthorId;
     private List<AuthorEntity> authors;
 
-
     @PostConstruct
     public void loadAuthors() {
         authors = authorDAO.getAllAuthors();
@@ -38,7 +37,11 @@ public class BookBean implements Serializable {
     public void save() {
         var author = authorDAO.getAuthorById(selectedAuthorId);
         book.setAuthor(author);
-        bookDAO.save(book);
+        if (book.getId() == null) {
+            bookDAO.create(book);
+        } else {
+            bookDAO.update(book);
+        }
     }
 
     public BookEntity getBook() {

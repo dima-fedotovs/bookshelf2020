@@ -14,4 +14,13 @@ public class BookDAO {
     public BookEntity getBookById(long id) {
         return em.find(BookEntity.class, id);
     }
+
+
+    public void create(BookEntity book) {
+        em.persist(book);
+    }
+
+    public void update(BookEntity book) {
+        em.merge(book);
+    }
 }

@@ -22,8 +22,7 @@ public class AuthorDAO {
     }
 
     public AuthorEntity update(AuthorEntity author) {
-        var tmp = em.merge(author);
-        return tmp;
+        return em.merge(author);
     }
 
     public void create(AuthorEntity author) {
