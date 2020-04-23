@@ -11,19 +11,39 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <ui:composition template="/templates/main.xhtml">
+    <f:metadata>
+        <f:viewParam name="page" value="#{booksBean.page}"/>
+        <f:viewAction action="#{booksBean.loadBooks}"/>
+    </f:metadata>
     <ui:define name="content">
 
         <h:dataTable value="#{booksBean.books}" var="book">
             <h:column>
-                <f:facet name="header">id</f:facet>
+                <f:facet name="header">ID</f:facet>
                 #{book.id}
             </h:column>
             <h:column>
-                <f:facet name="header">title</f:facet>
+                <f:facet name="header">Title</f:facet>
                 #{book.title}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Author</f:facet>
+                #{book.author.name}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Actions</f:facet>
+                <h:link value="Edit" outcome="/manage/editBook.xhtml" rendered="#{request.isUserInRole('MANAGER')}">
+                    <f:param name="id" value="#{book.id}"/>
+                </h:link>
             </h:column>
         </h:dataTable>
 
+        <h:link value="prev">
+            <f:param name="page" value="#{booksBean.page - 1}"/>
+        </h:link>
+        <h:link value="next">
+            <f:param name="page" value="#{booksBean.page + 1}"/>
+        </h:link>
     </ui:define>
 </ui:composition>
 

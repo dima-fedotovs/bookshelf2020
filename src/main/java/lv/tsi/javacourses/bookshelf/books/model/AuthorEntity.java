@@ -1,6 +1,7 @@
 package lv.tsi.javacourses.bookshelf.books.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 @Entity(name = "Author")
@@ -10,6 +11,7 @@ public class AuthorEntity implements Serializable {
     @GeneratedValue
     private Long id;
 
+    @Size(min = 3, message = "Should be 3 characters at least")
     @Column(name = "name", length = 500)
     private String name;
 

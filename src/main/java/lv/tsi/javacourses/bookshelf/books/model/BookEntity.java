@@ -13,10 +13,11 @@ public class BookEntity implements Serializable {
     private String title;
     @Column(name = "isbn", length = 50, nullable = false)
     private String isbn;
-    @Column(name = "author", length = 500, nullable = false)
-    private String author;
     @Column(name = "year", nullable = false)
     private int year;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "author_id", nullable = false)
+    private AuthorEntity author;
 
     public Long getId() {
         return id;
@@ -42,19 +43,19 @@ public class BookEntity implements Serializable {
         this.isbn = isbn;
     }
 
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
     public int getYear() {
         return year;
     }
 
     public void setYear(int year) {
         this.year = year;
+    }
+
+    public AuthorEntity getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(AuthorEntity author) {
+        this.author = author;
     }
 }

@@ -17,20 +17,28 @@
     <ui:define name="content">
 
         <h:form>
+            <h:messages/>
             <p>
                 <h:outputLabel value="Id"/>
-                <h:inputText readonly="true" value="#{authorBean.author.id}"/>
+                <h:inputText id="authorId" readonly="true" value="#{authorBean.author.id}"/>
             </p>
             <p>
                 <h:outputLabel value="Name"/>
-                <h:inputText value="#{authorBean.author.name}"/>
+                <h:inputText value="#{authorBean.author.name}" >
+                    <f:ajax render="@this" execute="@this" event="change" listener="#{authorBean.change}"/>
+                </h:inputText>
             </p>
             <p>
                 <h:outputLabel value="Biography"/>
                 <h:inputTextarea value="#{authorBean.author.biography}"/>
             </p>
             <p>
-                <h:commandButton value="Save" action="#{authorBean.save}"/>
+                <h:commandButton value="Save" action="#{authorBean.save}">
+                    <f:ajax render="@form" execute="@form"/>
+                </h:commandButton>
+                <h:commandButton value="Delete" action="#{authorBean.delete}" rendered="#{not empty authorBean.author.id}">
+                    <f:ajax render="@form" execute="@form"/>
+                </h:commandButton>
             </p>
         </h:form>
 

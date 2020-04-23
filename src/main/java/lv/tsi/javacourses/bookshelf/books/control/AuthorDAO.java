@@ -29,4 +29,9 @@ public class AuthorDAO {
     public void create(AuthorEntity author) {
         em.persist(author);
     }
+
+    public void delete(AuthorEntity author) {
+        var tmp = em.merge(author);
+        em.remove(tmp);
+    }
 }
