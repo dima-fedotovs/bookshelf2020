@@ -43,6 +43,12 @@
             <version>1.7.22</version>
             <scope>provided</scope>
         </dependency>
+        <!-- OmniFaces - To make JSF life easier -->
+        <dependency>
+            <groupId>org.omnifaces</groupId>
+            <artifactId>omnifaces</artifactId>
+            <version>3.5</version>
+        </dependency>
     </dependencies>
 
 </project>

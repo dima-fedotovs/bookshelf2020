@@ -17,6 +17,8 @@
     <ui:define name="content">
         <h:form>
 
+            <h:messages showDetail="true"/>
+
             <p>
                 <h:outputLabel value="isbn"/>
                 <h:inputText value="#{bookBean.book.isbn}"/>
@@ -32,13 +34,15 @@
 
             <p>
                 <h:outputLabel value="author"/>
-                <h:selectOneMenu value="#{bookBean.selectedAuthorId}">
-                    <f:selectItems value="#{bookBean.authors}" var="author" itemValue="#{author.id}" itemLabel="#{author.name}"/>
+                <h:selectOneMenu value="#{bookBean.book.author}" converter="omnifaces.SelectItemsConverter">
+                    <f:selectItems value="#{bookBean.authors}" var="author" itemLabel="#{author.name}"/>
                 </h:selectOneMenu>
             </p>
 
             <p>
-                <h:commandButton value="Save" action="#{bookBean.save}"/>
+                <h:commandButton value="Save" action="#{bookBean.save}">
+                    <f:ajax execute="@form" render="@form"/>
+                </h:commandButton>
             </p>
         </h:form>
     </ui:define>

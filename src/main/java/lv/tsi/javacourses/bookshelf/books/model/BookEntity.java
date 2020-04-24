@@ -2,6 +2,7 @@ package lv.tsi.javacourses.bookshelf.books.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Objects;
 
 @Entity(name = "Book")
 @Table(name = "books")
@@ -57,5 +58,29 @@ public class BookEntity implements Serializable {
 
     public void setAuthor(AuthorEntity author) {
         this.author = author;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BookEntity that = (BookEntity) o;
+        return year == that.year &&
+               Objects.equals(id, that.id) &&
+               Objects.equals(title, that.title) &&
+               Objects.equals(isbn, that.isbn) &&
+               Objects.equals(author, that.author);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, title, isbn, year, author);
+    }
+
+    @Override
+    public String toString() {
+        return "BookEntity{" +
+               "id=" + id +
+               '}';
     }
 }
