@@ -1,5 +1,6 @@
 package lv.tsi.javacourses.bookshelf.books.boundary;
 
+import lv.tsi.javacourses.bookshelf.MessagesHelper;
 import lv.tsi.javacourses.bookshelf.books.control.AuthorDAO;
 import lv.tsi.javacourses.bookshelf.books.control.BookDAO;
 import lv.tsi.javacourses.bookshelf.books.model.AuthorEntity;
@@ -9,6 +10,8 @@ import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.validation.Valid;
+import javax.validation.Validator;
 import java.io.Serializable;
 import java.util.List;
 
@@ -20,6 +23,7 @@ public class BookBean implements Serializable {
     @Inject
     private AuthorDAO authorDAO;
     private long id;
+    @Valid
     private BookEntity book;
     private List<AuthorEntity> authors;
 
@@ -38,6 +42,7 @@ public class BookBean implements Serializable {
         } else {
             bookDAO.update(book);
         }
+        MessagesHelper.addInfoMessage(null, "Saved successfully!");
     }
 
     public BookEntity getBook() {

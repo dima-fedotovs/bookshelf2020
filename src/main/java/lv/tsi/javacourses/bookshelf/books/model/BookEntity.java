@@ -1,6 +1,9 @@
 package lv.tsi.javacourses.bookshelf.books.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -10,12 +13,16 @@ public class BookEntity implements Serializable {
     @Id
     @GeneratedValue
     private Long id;
+    @NotBlank
     @Column(name = "title", length = 500, nullable = false)
     private String title;
+    @NotBlank
     @Column(name = "isbn", length = 50, nullable = false)
     private String isbn;
+    @Digits(integer = 4, fraction = 0)
     @Column(name = "year", nullable = false)
     private int year;
+    @NotNull
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "author_id", nullable = false)
     private AuthorEntity author;

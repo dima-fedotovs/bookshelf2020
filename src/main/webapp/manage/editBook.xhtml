@@ -15,32 +15,38 @@
         <f:viewAction action="#{bookBean.loadBook}"/>
     </f:metadata>
     <ui:define name="content">
-        <h:form>
+        <h:form id="bookForm">
 
-            <h:messages showDetail="true"/>
+            <h:messages globalOnly="true"/>
 
             <p>
                 <h:outputLabel value="isbn"/>
-                <h:inputText value="#{bookBean.book.isbn}"/>
+                <h:inputText id="isbn" value="#{bookBean.book.isbn}"/>
+                <h:message for="isbn"/>
             </p>
             <p>
                 <h:outputLabel value="title"/>
-                <h:inputText value="#{bookBean.book.title}"/>
+                <h:inputText id="title" value="#{bookBean.book.title}"/>
+                <h:message for="title"/>
             </p>
             <p>
                 <h:outputLabel value="year"/>
-                <h:inputText value="#{bookBean.book.year}"/>
+                <h:inputText id="year" value="#{bookBean.book.year}"/>
+                <h:message for="year"/>
             </p>
 
             <p>
                 <h:outputLabel value="author"/>
-                <h:selectOneMenu value="#{bookBean.book.author}" converter="omnifaces.SelectItemsConverter">
+                <h:selectOneMenu id="author" value="#{bookBean.book.author}" hideNoSelectionOption="true"
+                                 converter="omnifaces.SelectItemsIndexConverter">
+                    <f:selectItem itemValue="#{null}" itemLabel="Select author" noSelectionOption="true"/>
                     <f:selectItems value="#{bookBean.authors}" var="author" itemLabel="#{author.name}"/>
                 </h:selectOneMenu>
+                <h:message for="author"/>
             </p>
 
             <p>
-                <h:commandButton value="Save" action="#{bookBean.save}">
+                <h:commandButton id="save" value="Save" action="#{bookBean.save}">
                     <f:ajax execute="@form" render="@form"/>
                 </h:commandButton>
             </p>
