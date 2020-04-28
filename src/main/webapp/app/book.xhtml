@@ -1,0 +1,36 @@
+<!--
+  ~ Copyright (c) 2020 Dimitrijs Fedotovs
+  ~ This code is licensed under MIT license
+  ~ (see LICENSE.txt for details)
+  -->
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<ui:composition template="/templates/main.xhtml">
+    <f:metadata>
+        <f:viewParam name="id" value="#{bookBean.id}"/>
+        <f:viewAction action="#{bookBean.loadBook}"/>
+    </f:metadata>
+
+    <ui:define name="content">
+        <h:panelGrid columns="2">
+            <h:outputLabel value="title"/>
+            <h:outputText value="${bookBean.book.title}"/>
+
+            <h:outputLabel value="author"/>
+            <h:outputText value="${bookBean.book.author.name}"/>
+        </h:panelGrid>
+        <h:form>
+            <h:messages/>
+            <h:commandButton value="Reserve" action="#{bookBean.reserve}">
+                    <f:ajax render="@form"/>
+            </h:commandButton>
+        </h:form>
+    </ui:define>
+</ui:composition>
+
+</html>

@@ -1,0 +1,35 @@
+<!--
+  ~ Copyright (c) 2020 Dimitrijs Fedotovs
+  ~ This code is licensed under MIT license
+  ~ (see LICENSE.txt for details)
+  -->
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<ui:composition template="/templates/main.xhtml">
+    <ui:define name="content">
+        <h1>Ready to give</h1>
+        <h:form>
+            <h:dataTable value="#{reservationBean.readyToGive}" var="r">
+                <h:column>
+                    <f:facet name="head">Book Title</f:facet>
+                    #{r.book.title}
+                </h:column>
+                <h:column>
+                    <f:facet name="head">User</f:facet>
+                    #{r.user.loginName}
+                </h:column>
+                <h:column>
+                    <h:commandLink value="Give" action="#{reservationBean.give(r)}" disabled="#{r.status eq 'TAKEN'}">
+                        <f:ajax render="@this"/>
+                    </h:commandLink>
+                </h:column>
+            </h:dataTable>
+        </h:form>
+    </ui:define>
+</ui:composition>
+
+</html>

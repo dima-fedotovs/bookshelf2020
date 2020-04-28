@@ -35,6 +35,9 @@
                 <h:link value="Edit" outcome="/manage/editBook.xhtml" rendered="#{request.isUserInRole('MANAGER')}">
                     <f:param name="id" value="#{book.id}"/>
                 </h:link>
+                <h:link value="View" outcome="/app/book.xhtml">
+                    <f:param name="id" value="#{book.id}"/>
+                </h:link>
             </h:column>
         </h:dataTable>
 

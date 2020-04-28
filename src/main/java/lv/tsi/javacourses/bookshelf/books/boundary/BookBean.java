@@ -1,15 +1,19 @@
 package lv.tsi.javacourses.bookshelf.books.boundary;
 
 import lv.tsi.javacourses.bookshelf.MessagesHelper;
+import lv.tsi.javacourses.bookshelf.auth.boundary.CurrentUser;
 import lv.tsi.javacourses.bookshelf.books.control.AuthorDAO;
 import lv.tsi.javacourses.bookshelf.books.control.BookDAO;
+import lv.tsi.javacourses.bookshelf.books.control.ReservationDAO;
 import lv.tsi.javacourses.bookshelf.books.model.AuthorEntity;
 import lv.tsi.javacourses.bookshelf.books.model.BookEntity;
+import lv.tsi.javacourses.bookshelf.books.model.ReservationStatus;
 
 import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 import javax.validation.Validator;
 import java.io.Serializable;
@@ -22,6 +26,11 @@ public class BookBean implements Serializable {
     private BookDAO bookDAO;
     @Inject
     private AuthorDAO authorDAO;
+    @Inject
+    private ReservationDAO reservationDAO;
+    @Inject
+    private CurrentUser currentUser;
+
     private long id;
     @Valid
     private BookEntity book;
@@ -43,6 +52,21 @@ public class BookBean implements Serializable {
             bookDAO.update(book);
         }
         MessagesHelper.addInfoMessage(null, "Saved successfully!");
+    }
+
+    @Transactional
+    public String reserve() {
+        var user = currentUser.getUser();
+        bookDAO.findAndLockBook(book.getId());
+        var rl = reservationDAO.findActiveReservations(book, user);
+        if (!rl.isEmpty()) {
+            MessagesHelper.addErrorMessage(null,
+                    "You have active reservation of this book");
+            return null;
+        }
+        MessagesHelper.addInfoMessage(null, "Success!");
+        reservationDAO.createReservation(book, user);
+        return null;
     }
 
     public BookEntity getBook() {
