@@ -16,7 +16,8 @@
             <ui:fragment rendered="#{request.isUserInRole('MANAGER')}">
                 <li><h:link value="Manager space" outcome="/manage/index.xhtml"/></li>
                 <li><h:link value="Manage Authors" outcome="/manage/authors.xhtml"/></li>
-                <li><h:link value="Active queue" outcome="/manage/pending.xhtml"/></li>
+                <li><h:link value="Give books" outcome="/manage/give.xhtml"/></li>
+                <li><h:link value="Take books" outcome="/manage/take.xhtml"/></li>
             </ui:fragment>
             <ui:fragment rendered="#{request.isUserInRole('ADMIN')}">
                 <li><h:link value="Admin space" outcome="/admin/index.xhtml"/></li>

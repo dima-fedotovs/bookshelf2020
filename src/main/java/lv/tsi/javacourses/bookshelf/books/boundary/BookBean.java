@@ -10,6 +10,7 @@ import lv.tsi.javacourses.bookshelf.books.model.BookEntity;
 import lv.tsi.javacourses.bookshelf.books.model.ReservationStatus;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.security.RolesAllowed;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;

@@ -58,4 +58,9 @@ public class ReservationBean implements Serializable {
         reservation.setStatus(ReservationStatus.TAKEN);
         reservationDAO.save(reservation);
     }
+
+    public void take(ReservationEntity reservation) {
+        reservation.setStatus(ReservationStatus.CLOSED);
+        reservationDAO.save(reservation);
+    }
 }
