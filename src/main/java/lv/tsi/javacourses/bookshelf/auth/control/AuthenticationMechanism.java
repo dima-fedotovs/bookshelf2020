@@ -63,11 +63,11 @@ public class AuthenticationMechanism implements HttpAuthenticationMechanism {
     }
 
     private boolean isUser(HttpServletRequest request) {
-        return isAdmin(request) || isManager(request) || request.isUserInRole(USER.toString());
+        return request.isUserInRole(USER.toString());
     }
 
     private boolean isManager(HttpServletRequest request) {
-        return isAdmin(request) || request.isUserInRole(MANAGER.toString());
+        return request.isUserInRole(MANAGER.toString());
     }
 
     private boolean isAdmin(HttpServletRequest request) {

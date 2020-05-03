@@ -54,8 +54,6 @@
         </web-resource-collection>
         <auth-constraint>
             <role-name>USER</role-name>
-            <role-name>MANAGER</role-name>
-            <role-name>ADMIN</role-name>
         </auth-constraint>
     </security-constraint>
     <security-constraint>
@@ -65,7 +63,6 @@
         </web-resource-collection>
         <auth-constraint>
             <role-name>MANAGER</role-name>
-            <role-name>ADMIN</role-name>
         </auth-constraint>
     </security-constraint>
     <security-constraint>
