@@ -63,14 +63,17 @@ public class AuthenticationMechanism implements HttpAuthenticationMechanism {
     }
 
     private boolean isUser(HttpServletRequest request) {
+        // roles inheritance is defined in JpaIdentityStore
         return request.isUserInRole(USER.toString());
     }
 
     private boolean isManager(HttpServletRequest request) {
+        // roles inheritance is defined in JpaIdentityStore
         return request.isUserInRole(MANAGER.toString());
     }
 
     private boolean isAdmin(HttpServletRequest request) {
+        // roles inheritance is defined in JpaIdentityStore
         return request.isUserInRole(ADMIN.toString());
     }
 }

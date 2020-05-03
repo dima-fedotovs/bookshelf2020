@@ -36,11 +36,14 @@ public class JpaIdentityStore implements IdentityStore {
 
     private Set<String> makeRoles(Role role) {
         Set<String> result = new HashSet<>(4, 1);
+        // roles inheritance is defined by switch-case without breaks.
         switch (role) {
             case ADMIN:
                 result.add(ADMIN.toString());
+                // here is no break, so ADMIN takes MANAGER and USER roles too
             case MANAGER:
                 result.add(MANAGER.toString());
+                // here is no break, so MANAGER takes USER role too
             case USER:
                 result.add(USER.toString());
         }

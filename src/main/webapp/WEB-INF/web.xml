@@ -53,6 +53,7 @@
             <url-pattern>/app/*</url-pattern>
         </web-resource-collection>
         <auth-constraint>
+            <!--roles inheritance is defined in JpaIdentityStore-->
             <role-name>USER</role-name>
         </auth-constraint>
     </security-constraint>
@@ -62,6 +63,7 @@
             <url-pattern>/manage/*</url-pattern>
         </web-resource-collection>
         <auth-constraint>
+            <!--roles inheritance is defined in JpaIdentityStore-->
             <role-name>MANAGER</role-name>
         </auth-constraint>
     </security-constraint>
@@ -71,6 +73,7 @@
             <url-pattern>/admin/*</url-pattern>
         </web-resource-collection>
         <auth-constraint>
+            <!--roles inheritance is defined in JpaIdentityStore-->
             <role-name>ADMIN</role-name>
         </auth-constraint>
     </security-constraint>
