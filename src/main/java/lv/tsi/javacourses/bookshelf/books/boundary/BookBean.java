@@ -7,16 +7,13 @@ import lv.tsi.javacourses.bookshelf.books.control.BookDAO;
 import lv.tsi.javacourses.bookshelf.books.control.ReservationDAO;
 import lv.tsi.javacourses.bookshelf.books.model.AuthorEntity;
 import lv.tsi.javacourses.bookshelf.books.model.BookEntity;
-import lv.tsi.javacourses.bookshelf.books.model.ReservationStatus;
 
 import javax.annotation.PostConstruct;
-import javax.annotation.security.RolesAllowed;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
-import javax.validation.Validator;
 import java.io.Serializable;
 import java.util.List;
 
@@ -39,7 +36,7 @@ public class BookBean implements Serializable {
 
     @PostConstruct
     public void loadAuthors() {
-        authors = authorDAO.getAllAuthors();
+        authors = authorDAO.selectAllAuthors();
     }
 
     public void loadBook() {

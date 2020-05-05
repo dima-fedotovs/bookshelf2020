@@ -2,6 +2,7 @@ package lv.tsi.javacourses.bookshelf.books.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.Digits;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -19,7 +20,8 @@ public class BookEntity implements Serializable {
     @NotBlank
     @Column(name = "isbn", length = 50, nullable = false)
     private String isbn;
-    @Digits(integer = 4, fraction = 0)
+    @Digits(integer = 4, fraction = 0, message = "Should be a number")
+    @Min(value = 1000, message = "nooooo")
     @Column(name = "year", nullable = false)
     private int year;
     @NotNull

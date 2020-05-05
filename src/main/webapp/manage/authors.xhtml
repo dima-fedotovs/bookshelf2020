@@ -8,9 +8,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:bs="http://java.sun.com/jsf/composite/comps">
 
 <ui:composition template="/templates/main.xhtml">
+    <f:metadata>
+        <f:viewParam name="page" value="#{authorListBean.pagingInfo.currentPage}"/>
+        <f:viewAction action="#{authorListBean.init}"/>
+    </f:metadata>
     <ui:define name="content">
 
         <h:dataTable value="#{authorListBean.authors}" var="a">
@@ -29,6 +34,10 @@
                 </h:outputLink>
             </h:column>
         </h:dataTable>
+
+        <p>
+            <bs:paging info="#{authorListBean.pagingInfo}" prefix="(" suffix=")"/>
+        </p>
 
 
         <h:outputLink value="author.xhtml">Create new</h:outputLink>

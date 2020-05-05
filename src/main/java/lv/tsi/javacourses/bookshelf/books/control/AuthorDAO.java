@@ -12,13 +12,25 @@ public class AuthorDAO {
     @PersistenceContext
     private EntityManager em;
 
-    public List<AuthorEntity> getAllAuthors() {
+    public List<AuthorEntity> selectAllAuthors() {
         return em.createQuery("select b from Author b", AuthorEntity.class)
                 .getResultList();
     }
 
-    public AuthorEntity getAuthorById(long id) {
+    public List<AuthorEntity> selectAuthorsPage(int from, int size) {
+        return em.createQuery("select b from Author b", AuthorEntity.class)
+                .setFirstResult(from)
+                .setMaxResults(size)
+                .getResultList();
+    }
+
+    public AuthorEntity selectAuthorById(long id) {
         return em.find(AuthorEntity.class, id);
+    }
+
+    public long selectAuthorsCount() {
+        return em.createQuery("select count(a) from Author a", Long.class)
+                .getSingleResult();
     }
 
     public AuthorEntity update(AuthorEntity author) {

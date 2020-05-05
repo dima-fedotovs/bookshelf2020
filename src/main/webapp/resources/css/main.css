@@ -1,0 +1,10 @@
+
+.pgnum.curr {
+    font-weight: bold;
+    color: red;
+}
+
+.pgnum {
+    font-size: small;
+    color: aqua;
+}

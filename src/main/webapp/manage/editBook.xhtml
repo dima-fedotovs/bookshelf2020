@@ -17,7 +17,7 @@
     <ui:define name="content">
         <h:form id="bookForm">
 
-            <h:messages globalOnly="true"/>
+            <h:messages globalOnly="true" infoClass="info-msg" styleClass="messages"/>
 
             <p>
                 <h:outputLabel value="isbn"/>
@@ -26,7 +26,7 @@
             </p>
             <p>
                 <h:outputLabel value="title"/>
-                <h:inputText id="title" value="#{bookBean.book.title}"/>
+                <h:inputText id="title" value="#{bookBean.book.title}" validator="mycustom"/>
                 <h:message for="title"/>
             </p>
             <p>

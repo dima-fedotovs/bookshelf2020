@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -31,7 +30,7 @@ public class AuthorBean implements Serializable {
         if (id == 0) {
             author = new AuthorEntity();
         } else {
-            author = authorDAO.getAuthorById(id);
+            author = authorDAO.selectAuthorById(id);
         }
     }
 
