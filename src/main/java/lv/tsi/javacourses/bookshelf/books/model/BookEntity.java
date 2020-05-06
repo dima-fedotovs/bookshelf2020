@@ -20,9 +20,8 @@ public class BookEntity implements Serializable {
     @NotBlank
     @Column(name = "isbn", length = 50, nullable = false)
     private String isbn;
-    @Digits(integer = 4, fraction = 0, message = "Should be a number")
-    @Min(value = 1000, message = "nooooo")
-    @Column(name = "year", nullable = false)
+    @Digits(integer = 4, fraction = 0)
+     @Column(name = "year", nullable = false)
     private int year;
     @NotNull
     @ManyToOne(fetch = FetchType.EAGER)
