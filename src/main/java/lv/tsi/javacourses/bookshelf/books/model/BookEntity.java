@@ -28,6 +28,11 @@ public class BookEntity implements Serializable {
     @JoinColumn(name = "author_id", nullable = false)
     private AuthorEntity author;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cover_file_id")
+    private FileEntity cover;
+
+
     public Long getId() {
         return id;
     }
@@ -66,6 +71,15 @@ public class BookEntity implements Serializable {
 
     public void setAuthor(AuthorEntity author) {
         this.author = author;
+    }
+
+
+    public FileEntity getCover() {
+        return cover;
+    }
+
+    public void setCover(FileEntity cover) {
+        this.cover = cover;
     }
 
     @Override
