@@ -1,16 +1,35 @@
 package lv.tsi.javacourses.bookshelf.books.model;
 
-import javax.persistence.Embeddable;
-import javax.persistence.Lob;
+import javax.persistence.*;
+import java.io.Serializable;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
-@Embeddable
-public class FileInfo {
+@Entity(name = "File")
+@Table(name = "files")
+public class FileEntity implements Serializable {
+    @Id
+    @GeneratedValue
+    private Long id;
+
     @Lob
+    @Column(name = "data")
     private byte[] data;
 
+    @Column(name = "content_type")
     private String contentType;
 
+    @Column(name = "file_name")
     private String fileName;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public byte[] getData() {
         return data;

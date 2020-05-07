@@ -4,10 +4,11 @@ import lv.tsi.javacourses.bookshelf.MessagesHelper;
 import lv.tsi.javacourses.bookshelf.auth.boundary.CurrentUser;
 import lv.tsi.javacourses.bookshelf.books.control.AuthorDAO;
 import lv.tsi.javacourses.bookshelf.books.control.BookDAO;
+import lv.tsi.javacourses.bookshelf.books.control.FileDAO;
 import lv.tsi.javacourses.bookshelf.books.control.ReservationDAO;
 import lv.tsi.javacourses.bookshelf.books.model.AuthorEntity;
 import lv.tsi.javacourses.bookshelf.books.model.BookEntity;
-import lv.tsi.javacourses.bookshelf.books.model.FileInfo;
+import lv.tsi.javacourses.bookshelf.books.model.FileEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -34,6 +35,8 @@ public class BookBean implements Serializable {
     private ReservationDAO reservationDAO;
     @Inject
     private CurrentUser currentUser;
+    @Inject
+    private FileDAO fileDAO;
     private Part coverPart;
 
     private long id;
@@ -58,10 +61,11 @@ public class BookBean implements Serializable {
                     coverPart.getContentType(),
                     coverPart.getSize(),
                     coverPart.getSubmittedFileName());
-            var cover = new FileInfo();
+            var cover = new FileEntity();
             cover.setContentType(coverPart.getContentType());
             cover.setFileName(coverPart.getSubmittedFileName());
             cover.setData(loadBytesFromPart(coverPart));
+            fileDAO.save(cover);
             book.setCover(cover);
         }
         if (book.getId() == null) {

@@ -28,11 +28,10 @@ public class BookEntity implements Serializable {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "author_id", nullable = false)
     private AuthorEntity author;
-    @Embedded
-    @AttributeOverride(name= "data", column = @Column(name = "cover_data"))
-    @AttributeOverride(name= "contentType", column = @Column(name = "cover_content_type"))
-    @AttributeOverride(name= "fileName", column = @Column(name = "cover_file_name"))
-    private FileInfo cover;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cover_file_id")
+    private FileEntity cover;
 
 
     public Long getId() {
@@ -76,11 +75,11 @@ public class BookEntity implements Serializable {
     }
 
 
-    public FileInfo getCover() {
+    public FileEntity getCover() {
         return cover;
     }
 
-    public void setCover(FileInfo cover) {
+    public void setCover(FileEntity cover) {
         this.cover = cover;
     }
 

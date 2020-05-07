@@ -46,7 +46,7 @@
             </p>
 
             <p>
-                <o:graphicImage value="#{bookCoverBean.loadCover(bookBean.book.id)}" width="150"/>
+                <o:graphicImage value="#{fileAccessBean.loadFile(bookBean.book.cover.id)}" width="150"/>
             </p>
             <p>
                 <h:inputFile id="cover" value="#{bookBean.coverPart}"/>
