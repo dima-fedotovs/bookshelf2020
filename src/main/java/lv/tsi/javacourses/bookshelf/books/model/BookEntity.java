@@ -28,6 +28,12 @@ public class BookEntity implements Serializable {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "author_id", nullable = false)
     private AuthorEntity author;
+    @Embedded
+    @AttributeOverride(name= "data", column = @Column(name = "cover_data"))
+    @AttributeOverride(name= "contentType", column = @Column(name = "cover_content_type"))
+    @AttributeOverride(name= "fileName", column = @Column(name = "cover_file_name"))
+    private FileInfo cover;
+
 
     public Long getId() {
         return id;
@@ -67,6 +73,15 @@ public class BookEntity implements Serializable {
 
     public void setAuthor(AuthorEntity author) {
         this.author = author;
+    }
+
+
+    public FileInfo getCover() {
+        return cover;
+    }
+
+    public void setCover(FileInfo cover) {
+        this.cover = cover;
     }
 
     @Override
