@@ -1,0 +1,33 @@
+echo Configuring logging
+/subsystem=logging/logger=lv.tsi.javacourses.bookshelf:add(level="DEBUG")
+/subsystem=logging/console-handler=CONSOLE:write-attribute(name="level", value="DEBUG")
+
+
+echo Creating PostgreSQL jdbc driver module
+module add \
+    --name=org.postgresql \
+    --dependencies=javax.api,javax.transaction.api \
+    --resources="P:\Tools\postgresql-42.2.12.jar"
+
+
+echo Configuring PostgreSQL driver
+/subsystem=datasources/jdbc-driver=postgresql \
+    :add(driver-name=postgresql, \
+         driver-module-name=org.postgresql, \
+         driver-class-name=org.postgresql.Driver)
+
+
+echo Configuring Datasource
+data-source add \
+    --name=BookshelfDS \
+    --driver-name=postgresql \
+    --jndi-name=java:jboss/datasources/BookshelfDS \
+    --connection-url="jdbc:postgresql://localhost:5432/bookshelf" \
+    --user-name="bookshelf" \
+    --password="bookshelf" \
+    --min-pool-size="5" \
+    --max-pool-size="20" \
+    --blocking-timeout-wait-millis=5000 \
+    --query-timeout=10 \
+    --idle-timeout-minutes=15 \
+    --enabled=true
