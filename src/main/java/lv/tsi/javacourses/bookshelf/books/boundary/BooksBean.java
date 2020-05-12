@@ -3,12 +3,10 @@ package lv.tsi.javacourses.bookshelf.books.boundary;
 
 import lv.tsi.javacourses.bookshelf.books.model.BookEntity;
 
-import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.transaction.Transactional;
 import java.io.Serializable;
 import java.util.List;
 
@@ -38,4 +36,5 @@ public class BooksBean implements Serializable {
     public void setPage(int page) {
         this.page = page;
     }
+
 }

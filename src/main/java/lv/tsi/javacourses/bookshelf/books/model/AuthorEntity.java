@@ -7,7 +7,7 @@ import java.util.Objects;
 
 @Entity(name = "Author")
 @Table(name = "authors")
-public class AuthorEntity implements Serializable, Cloneable {
+public class AuthorEntity implements Serializable, Cloneable, WithId {
     @Id
     @GeneratedValue
     private Long id;

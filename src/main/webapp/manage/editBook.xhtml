@@ -38,7 +38,7 @@
             <p>
                 <h:outputLabel value="author"/>
                 <h:selectOneMenu id="author" value="#{bookBean.book.author}" hideNoSelectionOption="true"
-                                 converter="omnifaces.SelectItemsIndexConverter">
+                                 converter="#{mappingObjectConverter}">
                     <f:selectItem itemValue="#{null}" itemLabel="Select author" noSelectionOption="true"/>
                     <f:selectItems value="#{bookBean.authors}" var="author" itemLabel="#{author.name}"/>
                 </h:selectOneMenu>
